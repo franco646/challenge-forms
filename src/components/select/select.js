@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-const Select = ({ item }) => {
-    return (
-     <select id={`${item.name}-select`} name={item.name}>
-        {item.options.map((option) => (
-          <option value={option.value}>{option.label}</option>
-        ))}
-      </select>
-    )
-}
+const Select = ({ item, ...anotherProps }) => {
+  return (
+    <select id={`${item.name}-input`} {...anotherProps}>
+      {item.options.map((option) => (
+        <option value={option.value}>{option.label}</option>
+      ))}
+    </select>
+  );
+};
 
-export default Select
+export default Select;

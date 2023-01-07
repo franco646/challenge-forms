@@ -3,10 +3,11 @@ import Select from "../select/select";
 
 const Input = ({ item }) => {
   return (
-    <div>
+    <div onChange={(e, v) => console.log(e.target.value)}>
       {item.type === "submit" ? null : (
         <label htmlFor={item.name ? `${item.name}-input` : null}>
-          {item.label}{item.required ? '*' : null}
+          {item.label}
+          {item.required ? "*" : null}
         </label>
       )}
       {item.type === "select" ? (
