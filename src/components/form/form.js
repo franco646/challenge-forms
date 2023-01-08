@@ -19,8 +19,31 @@ const Form = ({ items, onSubmit }) => {
     return initialValues;
   };
 
+  const createValidations = (values) => {
+    const errors = {};
+    items.forEach((item) => {
+      if (item.required) {
+        if (!values[item.name]) {
+          return (errors[item.name] = "Este campo es obligatorio.");
+        }
+      }
+      if (item.type === "email") {
+        if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values[item.name])
+        ) {
+          return (errors[item.name] = "Ingrese un email válido.");
+        }
+      }
+    });
+    return errors;
+  };
+
   return (
-    <Formik initialValues={createInitialValues()} onSubmit={onSubmit}>
+    <Formik
+      initialValues={createInitialValues()}
+      onSubmit={onSubmit}
+      validate={createValidations}
+    >
       {({
         values,
         errors,
@@ -29,7 +52,7 @@ const Form = ({ items, onSubmit }) => {
         handleBlur,
         handleSubmit,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           {items.map((item, i) =>
             item.type === "submit" ? null : (
               <div key={i}>
@@ -68,7 +91,5 @@ const Form = ({ items, onSubmit }) => {
     </Formik>
   );
 };
-
-// errors.email && touched.email && errors.email
 
 export default Form;
