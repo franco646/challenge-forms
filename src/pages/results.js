@@ -9,6 +9,10 @@ const ResultsPage = () => {
   let { userId } = useParams();
 
   useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    if (localUser && localUser.id === userId) {
+      return setUser(localUser);
+    }
     const fetchUser = async () => {
       const docRef = doc(db, "users", userId);
       const docSnap = await getDoc(docRef);
