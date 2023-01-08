@@ -1,38 +1,46 @@
 import React from "react";
-import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
 
 import Form from "../components/form/form";
 
 import data from "../data/db.json";
+
+import db from "../firebase/db";
 
 const MySwal = withReactContent(Swal);
 
 const FormPage = () => {
   const navigate = useNavigate();
 
-  const handleNavigation = () => {
-    navigate("/results");
+  const handleNavigation = (userId) => {
+    navigate(`/results/${userId}`);
     MySwal.close();
   };
 
   const handleSubmit = async (values) => {
     try {
-      await axios.post("https://us-central1-forms-challenge.cloudfunctions.net/app/", values);
       MySwal.fire({
-        title: "Guardado con éxito",
+        title: "Guardando...",
+        didOpen: () => {
+          MySwal.showLoading();
+        },
+      });
+      const docRef = await addDoc(collection(db, "users"), { ...values });
+      MySwal.fire({
+        title: "Guardado con exito",
         icon: "success",
         html: (
           <p>
             Para ver los resultados haga{" "}
-            <u onClick={handleNavigation}>click aquí</u>
+            <u onClick={() => handleNavigation(docRef.id)}>click aquí</u>
           </p>
         ),
       });
-    } catch (error) {
-      MySwal.fire("Error", error.message, "error");
+    } catch (e) {
+      MySwal.fire("Error", e.message, "error");
     }
   };
 
