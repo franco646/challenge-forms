@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to={"/form"} />} />
         <Route path="/form" element={<FormPage />} />
-        <Route path="/results" element={<ResultsPage />} />
+        <Route path="/results/:userId" element={<ResultsPage />} />
       </Routes>
     </div>
   );
