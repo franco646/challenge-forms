@@ -29,6 +29,10 @@ const FormPage = () => {
         },
       });
       const docRef = await addDoc(collection(db, "users"), { ...values });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...values, id: docRef.id })
+      );
       MySwal.fire({
         title: "Guardado con exito",
         icon: "success",
