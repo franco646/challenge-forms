@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 
 import Form from "../components/form/form";
+import Card from "../components/card/card";
 
 import data from "../data/db.json";
 
@@ -21,9 +22,13 @@ const FormPage = () => {
   };
 
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       MySwal.fire({
         title: "Guardando...",
+        customClass: {
+          loader: "sweetAlert2-loader",
+        },
         didOpen: () => {
           MySwal.showLoading();
         },
@@ -36,6 +41,11 @@ const FormPage = () => {
       MySwal.fire({
         title: "Guardado con exito",
         icon: "success",
+        customClass: {
+          confirmButton: "button",
+        },
+        buttonsStyling: false,
+        confirmButtonText: "Cerrar",
         html: (
           <p>
             Para ver los resultados haga{" "}
@@ -49,8 +59,19 @@ const FormPage = () => {
   };
 
   return (
-    <div>
-      <Form items={data.items} onSubmit={handleSubmit} />
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "15px",
+      }}
+    >
+      <Card title="Complete el formulario">
+        <Form items={data.items} onSubmit={handleSubmit} />
+      </Card>
     </div>
   );
 };

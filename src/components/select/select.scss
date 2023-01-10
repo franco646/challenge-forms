@@ -1,0 +1,149 @@
+@import "../../variables";
+
+.floating-form {
+  width: 320px;
+}
+
+.floating-label {
+  position: relative;
+  padding: 15px 0 0;
+  margin-bottom: 35px;
+  align-items: center;
+
+  label {
+    color: #999;
+    font-size: 1rem;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0px;
+    top: 20px;
+    font-size: 1rem;
+    line-height: 1.7rem;
+    transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+  }
+
+  option {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+.floating-input,
+.floating-select {
+  font-size: 14px;
+  padding: 11.5px 0px;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid $gray;
+}
+
+.floating-input:focus,
+.floating-select:focus {
+  outline: none;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
+
+  ~ label {
+    color: #11998e;
+  }
+}
+
+.floating-input:focus ~ label,
+.floating-input:not(:placeholder-shown) ~ label {
+  font-size: 1rem;
+  color: $gray;
+}
+
+.floating-select:focus ~ label,
+.floating-select:not(.isEmpty) ~ label {
+  top: 0px;
+  font-size: 1rem;
+}
+
+/* active state */
+
+.floating-input:focus ~ .bar:before,
+.floating-input:focus ~ .bar:after,
+.floating-select:focus ~ .bar:before,
+.floating-select:focus ~ .bar:after {
+  width: 50%;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.floating-textarea {
+  min-height: 30px;
+  max-height: 260px;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* highlighter */
+
+.highlight {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 15%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+
+.floating-input:focus ~ .highlight,
+.floating-select:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* animation */
+
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

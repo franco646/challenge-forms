@@ -1,12 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
+import Input from "../input/input";
+import Select from "../select/select";
+import Checkbox from "../checkbox/checkbox";
+import Button from "../button/button";
 
 const Form = ({ items, onSubmit }) => {
   const createInitialValues = () => {
     const initialValues = {};
     items.forEach((item) => {
       if (item.type === "select") {
-        return (initialValues[item.name] = item.options[0].value);
+        return (initialValues[item.name] = "");
       }
       if (item.type === "checkbox") {
         return (initialValues[item.name] = false);
@@ -35,6 +39,7 @@ const Form = ({ items, onSubmit }) => {
         }
       }
     });
+    console.log(errors);
     return errors;
   };
 
@@ -54,42 +59,36 @@ const Form = ({ items, onSubmit }) => {
       }) => (
         <form onSubmit={handleSubmit} noValidate>
           {items.map((item, i) =>
-            item.type === "submit" ? null : (
-              <div key={i}>
-                <label htmlFor={`${item.name}-input`}>
-                  {item.label}
-                  {item.required ? "*" : null}
-                </label>
-                {item.type === "select" ? (
-                  <select
-                    id={`${item.name}-input`}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values?.name}
-                  >
-                    {item.options.map((option) => (
-                      <option value={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    type={item.type}
-                    name={item?.name}
-                    id={`${item?.name}-input`}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values?.name}
-                  />
-                )}
-                {errors[item.name] && touched[item.name] && errors[item.name]}
-              </div>
+            item.type === "submit" ? null : item.type === "select" ? (
+              <Select
+                item={item}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values[item.name]}
+              />
+            ) : item.type === "checkbox" ? (
+              <Checkbox
+                item={item}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values[item.name]}
+              />
+            ) : (
+              <Input
+                item={item}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values[item.name]}
+              />
             )
           )}
-          <button type="submit">Enviar</button>
+          <Button type="submit">Enviar</Button>
         </form>
       )}
     </Formik>
   );
 };
+
+// {errors[item.name] && touched[item.name] && errors[item.name]}
 
 export default Form;

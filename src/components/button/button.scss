@@ -1,0 +1,26 @@
+@import "../../variables";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 200px;
+  height: 50px;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  background: linear-gradient(45deg, $primary, transparent) $primary;
+  transition: all 0.2s ease-out;
+  outline: none !important;
+  border: none;
+  border-radius: 3px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary;
+    // background: linear-gradient(45deg, $secondary, $primary);
+  }
+}

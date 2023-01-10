@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import FormPage from "./pages/form";
 import ResultsPage from "./pages/results";
 
+import "./App.scss";
+
 function App() {
   return (
     <div className="App">

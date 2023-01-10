@@ -1,24 +1,24 @@
 import React from "react";
-import Select from "../select/select";
 
-const Input = ({ item }) => {
+import "./input.scss";
+
+const Input = ({ item, onChange, onBlur, value }) => {
   return (
-    <div onChange={(e, v) => console.log(e.target.value)}>
-      {item.type === "submit" ? null : (
-        <label htmlFor={item.name ? `${item.name}-input` : null}>
-          {item.label}
-          {item.required ? "*" : null}
-        </label>
-      )}
-      {item.type === "select" ? (
-        <Select item={item} />
-      ) : (
-        <input
-          type={item.type}
-          name={item.name}
-          id={item.name ? `${item.name}-input` : null}
-        />
-      )}
+    <div className="form__group">
+      <input
+        type={item.type}
+        name={item.name}
+        id={`${item.name}-input`}
+        onChange={onChange}
+        className="form__field"
+        placeholder={item.label}
+        onBlur={onBlur}
+        value={value}
+      />
+      <label htmlFor={`${item.name}-input`} className="form__label">
+        {item.label}{" "}
+        {item.required ? <span className="require-asterisk">*</span> : null}
+      </label>
     </div>
   );
 };

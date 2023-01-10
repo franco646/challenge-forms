@@ -1,0 +1,21 @@
+@import "../../variables";
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: $gray;
+  margin-bottom: 37px;
+
+  input {
+    margin-right: 5px;
+    width: 1.2rem;
+    height: 1.2rem;
+    transform: translateY(0.075em);
+    accent-color: $primary;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

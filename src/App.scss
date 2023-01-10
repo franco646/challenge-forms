@@ -1,5 +1,19 @@
+@import "./variables";
+
 .App {
   text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    rgba($secondary, 0.8),
+    rgba($primary, 0.8)
+  );
+  overflow: hidden;
+}
+
+.sweetAlert2-loader {
+  border-color: $primary rgba(0, 0, 0, 0) $primary rgba(0, 0, 0, 0);
 }
 
 .App-logo {
@@ -35,4 +49,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  background-image: url("../public/bg-01.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
