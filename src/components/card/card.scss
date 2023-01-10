@@ -15,5 +15,20 @@
     line-height: 1.2;
     text-align: center;
     color: $black;
+
+    
+  @media screen and (max-width: $medium) {
+    margin-bottom: 40px;
+    font-size: 29px;
+
+  }
+  }
+
+  @media screen and (max-width: $medium) {
+    padding: 72px 35px 90px;
+  }
+
+  @media screen and (max-width: $small) {
+    padding: 50px 15px 70px;
   }
 }
