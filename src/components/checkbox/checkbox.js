@@ -3,9 +3,9 @@ import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./checkbox.scss";
 
-const Checkbox = ({ item, onChange, value, onBlur, error }) => {
+const Checkbox = ({ item, onChange, value, onBlur, error, ...otherProps }) => {
   return (
-    <div className="checkbox-group">
+    <div className="checkbox-group" {...otherProps}>
       <div>
         <input
           type="checkbox"

@@ -1,0 +1,41 @@
+@import "../../variables";
+
+.results-page {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  text-align: left;
+
+  li {
+    padding: 15px 24px 16px;
+  }
+}
+
+.results-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-bottom: 50px;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10%;
+  border-bottom: 1px solid $gray;
+
+  .results-label {
+    flex-basis: 35%;
+    color: $gray;
+    font-size: 0.75rem;
+  }
+
+  .results-value {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+}

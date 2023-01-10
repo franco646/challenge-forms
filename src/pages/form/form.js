@@ -4,13 +4,15 @@ import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 
-import Form from "../components/form/form";
-import Card from "../components/card/card";
+import Form from "../../components/form/form";
+import Card from "../../components/card/card";
 
-import data from "../data/db.json";
+import data from "../../data/db.json";
 
-import db from "../firebase/db";
-import RedirectLink from "../components/redirectLink/redirectLink";
+import db from "../../firebase/db";
+import RedirectLink from "../../components/redirectLink/redirectLink";
+
+import "./form.scss";
 
 const MySwal = withReactContent(Swal);
 
@@ -23,7 +25,6 @@ const FormPage = () => {
   };
 
   const handleSubmit = async (values) => {
-    console.log(values);
     try {
       MySwal.fire({
         title: "Guardando...",
@@ -50,21 +51,20 @@ const FormPage = () => {
         html: <RedirectLink onClick={() => handleNavigation(docRef.id)} />,
       });
     } catch (e) {
-      MySwal.fire("Error", e.message, "error");
+      MySwal.fire({
+        title: "Error",
+        text: e.message,
+        icon: "error",
+        customClass: {
+          confirmButton: "button",
+        },
+        buttonsStyling: false,
+      });
     }
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "15px",
-      }}
-    >
+    <div className="form-page">
       <Card title="Complete el formulario">
         <Form items={data.items} onSubmit={handleSubmit} />
       </Card>

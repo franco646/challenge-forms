@@ -39,7 +39,6 @@ const Form = ({ items, onSubmit }) => {
         }
       }
     });
-    console.log(errors);
     return errors;
   };
 
@@ -61,6 +60,7 @@ const Form = ({ items, onSubmit }) => {
           {items.map((item, i) =>
             item.type === "submit" ? null : item.type === "select" ? (
               <Select
+                key={i}
                 item={item}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -71,6 +71,7 @@ const Form = ({ items, onSubmit }) => {
               />
             ) : item.type === "checkbox" ? (
               <Checkbox
+                key={i}
                 item={item}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -81,6 +82,7 @@ const Form = ({ items, onSubmit }) => {
               />
             ) : (
               <Input
+                key={i}
                 item={item}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -91,7 +93,6 @@ const Form = ({ items, onSubmit }) => {
               />
             )
           )}
-
           <Button type="submit">Enviar</Button>
         </form>
       )}

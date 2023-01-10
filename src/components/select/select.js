@@ -3,9 +3,9 @@ import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./select.scss";
 
-const Select = ({ item, value, onChange, onBlur, error }) => {
+const Select = ({ item, value, onChange, onBlur, error, ...otherProps }) => {
   return (
-    <div class="floating-label">
+    <div className="floating-label" {...otherProps}>
       <select
         id={`${item.name}-select`}
         className={`floating-select ${!value ? "isEmpty" : ""} ${
@@ -17,8 +17,8 @@ const Select = ({ item, value, onChange, onBlur, error }) => {
         onBlur={onBlur}
       >
         <option value=""></option>
-        {item.options.map((option) => (
-          <option value={option.value}>{option.label}</option>
+        {item.options.map((option, i) => (
+          <option value={option.value} key={i}>{option.label}</option>
         ))}
       </select>
       <label htmlFor={`${item.name}-select`}>

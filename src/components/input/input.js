@@ -3,9 +3,9 @@ import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./input.scss";
 
-const Input = ({ item, onChange, onBlur, value, error }) => {
+const Input = ({ item, onChange, onBlur, value, error, ...otherProps }) => {
   return (
-    <div className="form__group">
+    <div className="form__group" {...otherProps}>
       <input
         type={item.type === "date" ? "text" : item.type}
         name={item.name}
