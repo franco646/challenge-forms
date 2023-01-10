@@ -65,6 +65,9 @@ const Form = ({ items, onSubmit }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values[item.name]}
+                error={
+                  errors[item.name] && touched[item.name] && errors[item.name]
+                }
               />
             ) : item.type === "checkbox" ? (
               <Checkbox
@@ -72,6 +75,9 @@ const Form = ({ items, onSubmit }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values[item.name]}
+                error={
+                  errors[item.name] && touched[item.name] && errors[item.name]
+                }
               />
             ) : (
               <Input
@@ -79,16 +85,18 @@ const Form = ({ items, onSubmit }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values[item.name]}
+                error={
+                  errors[item.name] && touched[item.name] && errors[item.name]
+                }
               />
             )
           )}
+
           <Button type="submit">Enviar</Button>
         </form>
       )}
     </Formik>
   );
 };
-
-// {errors[item.name] && touched[item.name] && errors[item.name]}
 
 export default Form;

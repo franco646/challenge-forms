@@ -1,8 +1,9 @@
 import React from "react";
+import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./input.scss";
 
-const Input = ({ item, onChange, onBlur, value }) => {
+const Input = ({ item, onChange, onBlur, value, error }) => {
   return (
     <div className="form__group">
       <input
@@ -10,7 +11,7 @@ const Input = ({ item, onChange, onBlur, value }) => {
         name={item.name}
         id={`${item.name}-input`}
         onChange={onChange}
-        className="form__field"
+        className={`form__field ${error ? "invalid" : ""}`}
         placeholder={item.label}
         onBlur={onBlur}
         onFocus={(e) =>
@@ -22,6 +23,7 @@ const Input = ({ item, onChange, onBlur, value }) => {
         {item.label}{" "}
         {item.required ? <span className="require-asterisk">*</span> : null}
       </label>
+      <InvalidInputMessage error={error} />
     </div>
   );
 };

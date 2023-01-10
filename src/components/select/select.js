@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./select.scss";
 
-const Select = ({ item, value, onChange, onBlur }) => {
+const Select = ({ item, value, onChange, onBlur, error }) => {
   return (
     <div class="floating-label">
       <select
         id={`${item.name}-select`}
-        className={`floating-select ${!value ? "isEmpty" : ""}`}
+        className={`floating-select ${!value ? "isEmpty" : ""} ${
+          error ? "invalid" : ""
+        }`}
         name={item.name}
         value={value}
         onChange={onChange}
@@ -22,16 +25,9 @@ const Select = ({ item, value, onChange, onBlur }) => {
         {item.label}{" "}
         {item.required ? <span className="require-asterisk">*</span> : null}
       </label>
+      <InvalidInputMessage error={error} />
     </div>
   );
 };
-
-/**
- * <select id={`${item.name}-input`} {...anotherProps}>
-      {item.options.map((option) => (
-        <option value={option.value}>{option.label}</option>
-      ))}
-    </select>
- */
 
 export default Select;

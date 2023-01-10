@@ -1,0 +1,7 @@
+@import "../../variables";
+
+.invalid-input-message {
+  position: absolute;
+  font-size: 0.7rem;
+  color: $danger;
+}

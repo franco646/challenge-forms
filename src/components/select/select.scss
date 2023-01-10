@@ -54,6 +54,11 @@
   border-image: linear-gradient(to right, $primary, $secondary);
   border-image-slice: 1;
 
+  &.invalid {
+    border-image: linear-gradient(to right, $danger-alternative, $danger);
+    border-image-slice: 1;
+  }
+
   ~ label {
     color: #11998e;
   }

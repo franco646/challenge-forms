@@ -1,8 +1,9 @@
 import React from "react";
+import InvalidInputMessage from "../invalidInputMessage/invalidInputMessage";
 
 import "./checkbox.scss";
 
-const Checkbox = ({ item, onChange, value, onBlur }) => {
+const Checkbox = ({ item, onChange, value, onBlur, error }) => {
   return (
     <div className="checkbox-group">
       <div>
@@ -14,6 +15,7 @@ const Checkbox = ({ item, onChange, value, onBlur }) => {
           onChange={onChange}
           value={value}
         />
+        <InvalidInputMessage error={error} />
       </div>
       <label htmlFor={`${item.name}-checkbox`}>
         {item.label}{" "}

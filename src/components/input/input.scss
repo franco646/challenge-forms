@@ -60,6 +60,11 @@
   border-width: 3px;
   border-image: linear-gradient(to right, $primary, $secondary);
   border-image-slice: 1;
+
+  &.invalid {
+    border-image: linear-gradient(to right, $danger-alternative, $danger);
+    border-image-slice: 1;
+  }
 }
 /* reset input */
 .form__field {
