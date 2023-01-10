@@ -10,6 +10,7 @@ import Card from "../components/card/card";
 import data from "../data/db.json";
 
 import db from "../firebase/db";
+import RedirectLink from "../components/redirectLink/redirectLink";
 
 const MySwal = withReactContent(Swal);
 
@@ -46,12 +47,7 @@ const FormPage = () => {
         },
         buttonsStyling: false,
         confirmButtonText: "Cerrar",
-        html: (
-          <p>
-            Para ver los resultados haga{" "}
-            <u onClick={() => handleNavigation(docRef.id)}>click aquí</u>
-          </p>
-        ),
+        html: <RedirectLink onClick={() => handleNavigation(docRef.id)} />,
       });
     } catch (e) {
       MySwal.fire("Error", e.message, "error");
