@@ -7,7 +7,7 @@ const Select = ({ item, value, onChange, onBlur }) => {
     <div class="floating-label">
       <select
         id={`${item.name}-select`}
-        class={`floating-select ${!value ? "isEmpty" : ""}`}
+        className={`floating-select ${!value ? "isEmpty" : ""}`}
         name={item.name}
         value={value}
         onChange={onChange}
